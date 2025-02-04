@@ -1,2 +1,2 @@
 # vpc365
-create vpc via Terrafrom
+## Create vpc with security groups and NAT gateway via Terrafrom
