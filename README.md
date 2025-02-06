@@ -8,13 +8,13 @@
 - Security group that allows ports 80 and 443 from the internet
 - ELB listening on ports 80 and 443
 - Route53 hosted zone with a CNAME entry for the ELB
-- AWS API
 
 ## Python script to show used services for a given time period
 
 ### The script will perform following actions:
 - List the AWS services used region wise.
-- List each service in detail, like EC2, R
+- List each service in detail, like EC2, RDS, S3, etc.
+  
 ### Usage: get_usage_per_region.py [-h] --start-date START_DATE --end-date END_DATE [--detailed] [--show-cost]
 - Date Format: YYYY-mm-dd
 - Optional argument --detailed - list each service in details
