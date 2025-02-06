@@ -8,6 +8,16 @@ variable "vpc_name" {
   type = string
 }
 
+variable "domain_name" {
+  description = "Hosted zone domain name"
+  type = string
+}
+
+variable "web_domain_name" {
+  description = "VPC 365 fully qualified domain name"
+  type = string
+}
+
 variable "vpc_cidr" {
   description = "VPC cidr address block"
   type = string
