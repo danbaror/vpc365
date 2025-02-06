@@ -50,7 +50,7 @@ def get_cost_and_usage(start_date, end_date, detailed, show_cost):
         print(f"\nRegion: {region}")
         for service, cost in services:
             if show_cost:
-                print("  Service: {:50}  Cost: ${:3.2f}".format(service,cost))
+                print("  Service: {:50}  Cost: ${:3.3f}".format(service,cost))
             else:
                 print(f'  Service: {service}')
             if detailed:
@@ -61,7 +61,7 @@ def get_cost_and_usage(start_date, end_date, detailed, show_cost):
                         usage_cost = float(detail_group["Metrics"]["UnblendedCost"]["Amount"])
                         if usage_cost > 0:
                             if show_cost:
-                                print("    - Usage Type: {:34} Cost: ${:3.2f}".format(usage_type, usage_cost))
+                                print("    - Usage Type: {:34} Cost: ${:3.3f}".format(usage_type, usage_cost))
                             else:
                                 print(f'    - Usage Type: {usage_type}')
                 print("   ---")
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     # Initialize AWS Cost Explorer client
     client = boto3.client("ce")
-    
+
     print(f"AWS Used Services Report ({args.start_date} to {args.end_date}):\n")
     cost = get_cost_and_usage(args.start_date, args.end_date, args.detailed, args.show_cost)
     if args.show_cost:
