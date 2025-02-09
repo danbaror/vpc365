@@ -17,14 +17,14 @@ data "aws_subnet" "list" {
 data "aws_security_group" "elb_sg" {
   filter {
     name   = "tag:Name"
-    values = ["elb-custom-sg"]
+    values = [var.security_group_name]
   }
 }
 
 data "aws_instance" "bastion" {
     filter {
     name   = "tag:Name"
-    values = ["bastion1"]
+    values = [var.bastion_name]
   }
 }
   
@@ -58,7 +58,7 @@ resource "aws_lb_target_group" "web_tg_https" {
   }
 
   tags = {
-    Name = "web-tg-https"
+    Name = "web-target-group-https"
   }
 }
 
@@ -149,4 +149,3 @@ resource "aws_route53_record" "elb_cname" {
   ttl     = 300
   records = [aws_lb.web_elb.dns_name]  # Use the ELB DNS name
 }
-

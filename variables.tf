@@ -47,3 +47,8 @@ variable "security_group_name" {
   description = "Security group name"
   type = string
 }
+
+variable "bastion_name" {
+  description = "EC2 instance bastion name"
+  type = string
+}
