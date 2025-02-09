@@ -1,7 +1,7 @@
 data "aws_vpc" "existing" {
   filter {
     name   = "tag:Name"
-    values = ["vpc-365-scores"]
+    values = [var.vpc_name]
   }
   depends_on = [module.aws_vpc]
 }
@@ -9,7 +9,7 @@ data "aws_vpc" "existing" {
 
 resource "aws_security_group" "custom_sg" {
 
-    name = "custom-sg-365"
+    name = var.security_group_name
     description = "Allow SSH, HTTP, HTTPS inbound traffic"
     vpc_id = data.aws_vpc.existing.id
 
@@ -44,7 +44,8 @@ resource "aws_security_group" "custom_sg" {
     }
 
     tags = {
-        Name = "elb-custom-sg"
+        Name = var.security_group_name
+        VPC = var.vpc_name
     }
     depends_on = [module.aws_vpc]
 }

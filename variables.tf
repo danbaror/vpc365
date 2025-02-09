@@ -42,3 +42,8 @@ variable "elb_name" {
   description = "Load Balancer name"
   type = string
 }
+
+variable "security_group_name" {
+  description = "Security group name"
+  type = string
+}

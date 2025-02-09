@@ -5,7 +5,7 @@ data "aws_subnets" "public" {
   }
   filter {
     name   = "tag:Name"
-    values = ["vpc-365-scores-public-*"]  # Assumes your public subnets are tagged with "public-*"
+    values = ["${var.vpc_name}-public-*"]
   }
 }
 
@@ -115,7 +115,8 @@ resource "aws_acm_certificate" "web_cert" {
 
   tags = {
     Name = "web-cert"
-    Project = "test VPC 365 Scores"
+    Project = "VPC 365 Scores"
+    Created = "06-Feb-2025"
   }
   depends_on = [aws_route53_record.elb_cname]
 }
@@ -125,7 +126,7 @@ resource "aws_lb_listener" "https_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  # certificate_arn   = aws_acm_certificate.web_cert.arn  # Reference to ACM certificate
+  certificate_arn   = aws_acm_certificate.web_cert.arn  # Reference to ACM certificate
 
   default_action {
     type             = "forward"
