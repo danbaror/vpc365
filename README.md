@@ -8,6 +8,7 @@
 - Security group that allows ports 80 and 443 from the internet
 - ELB listening on ports 80 and 443
 - Route53 hosted zone with a CNAME entry for the ELB
+- URL: https://vpc365.dbaror.net
 
 ## Python script to show used services for a given time period
 
@@ -19,4 +20,4 @@
 - Date Format: YYYY-mm-dd
 - Optional argument --detailed - list each service in details
 - Optional argument --show-cost - list each service with cost
-
+- Run script example: python3 ./get_usage_per_region.py --start-date="2025-02-01" --end-date="2025-02-09" --detailed 
