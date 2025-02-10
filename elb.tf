@@ -135,15 +135,13 @@ resource "aws_lb_listener" "https_listener" {
   depends_on = [aws_acm_certificate.web_cert]
 }
 
-# Retrieve the existing Route 53 hosted zone
-data "aws_route53_zone" "dan_zone" {
+resource "aws_route53_zone" "dan_zone" {
   name         = var.domain_name
-  private_zone = false
 }
 
 # Create a Route 53 record to point to the ALB
 resource "aws_route53_record" "elb_cname" {
-  zone_id = data.aws_route53_zone.dan_zone.zone_id
+  zone_id = aws_route53_zone.dan_zone.zone_id
   name    = var.web_domain_name  # Subdomain pointing to the ELB
   type    = "CNAME"
   ttl     = 300
